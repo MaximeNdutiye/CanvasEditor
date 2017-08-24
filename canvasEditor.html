@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Draw</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="drawer.js"></script>
+    <nav>
+      <a href="./index.html"><button>Main</button></a>
+      <a href="./canvasEditor.html"><button>Editor</button></a>
+      <a href="./videoRecorder.html"><button>Capture</button></a>
+    </nav>
+  </head>
+
+  <body>
+    <div id=content>
+      <video class="video-clips" controls autoplay></video>
+      <div>
+        Line width : <select id="selWidth">
+            <option value="1">1</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="7">7</option>
+            <option value="9" selected="selected">9</option>
+            <option value="11">11</option>
+        </select>
+        Color : <select id="selColor">
+            <option value="black">black</option>
+            <option value="blue" selected="selected">blue</option>
+            <option value="red">red</option>
+            <option value="green">green</option>
+            <option value="yellow">yellow</option>
+            <option value="gray">gray</option>
+        </select>
+    </div>
+    <canvas id="myCanvas">
+      Your browser does not support the HTML5 canvas tag.
+    </canvas>
+    <a id="download" download="image.png"><button type="button">Download</button></a>
+    </div>
+  </body>
+</html>

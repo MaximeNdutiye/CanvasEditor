@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded",
   function(e){
     var mousePressed = false;

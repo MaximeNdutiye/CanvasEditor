@@ -13,7 +13,9 @@ function start(){
     width:  width * 2/3,
     height: height * 2/3,
     backgroundColor: '#292c34'
+
   });
+  win.setMenuBarVisibility(false)
 
   win.loadURL(`file://${__dirname}/index.html`)
   win.show();
