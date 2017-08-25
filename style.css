@@ -44,6 +44,11 @@ nav{
   overflow: hidden;
 }
 
+.source_thumbnail{
+  width: 400;
+  margin: 10px;
+
+}
 
 /* Video Cap */
 

@@ -1,15 +1,21 @@
-const {desktopCapturer} = require('electron')
+const {screen, desktopCapturer} = require('electron')
 
-desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
+desktopCapturer.getSources({types: ['window', 'screen'], thumbnailSize: determinScreen()}, (error, sources) => {
   if (error) throw error;
+  getInitialScreenshots(sources)
   for (let i = 0; i < sources.length; ++i) {
+    /*
     if (sources[i].name === 'Entire screen') {
       navigator.webkitGetUserMedia({
-        audio: false,
+        audio: {
+          mandatory:{
+            chromeMediaSource: 'desktop'
+          }
+        },
         video: {
           mandatory: {
             chromeMediaSource: 'desktop',
-            chromeMediaSourceId: sources[i].id,
+            //chromeMediaSourceId: sources[i].id,
             minWidth: 1280,
             maxWidth: 1280,
             minHeight: 720,
@@ -19,9 +25,27 @@ desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
       }, handleStream, getUserMediaError);
       return;
     }
-    console.log(sources[i].name)
+    */
   }
 });
+
+function determinScreen(){
+  const {width, height} = screen.getPrimaryDisplay().workAreaSize
+    return {
+      width: width,
+      height: height
+    }
+}
+function getInitialScreenshots(sources){
+  var sources_holder = document.querySelector('.sources_holder')
+  sources.forEach(source => {
+      var imageItem = document.createElement('img')
+      imageItem.classList.add('source_thumbnail')
+      var blob = new Blob([source.thumbnail.toPNG(50)])
+      imageItem.src = URL.createObjectURL(blob)
+      sources_holder.appendChild(imageItem)
+    })
+}
 
 function handleStream(stream) {
   var record = false;
