@@ -44,12 +44,32 @@ nav{
   overflow: hidden;
 }
 
+.no_overfill{
+  overflow: hidden;
+}
 .source_thumbnail{
   width: 400;
   margin: 10px;
-
 }
 
+.sources_holder{
+  display: flex;
+}
+
+/* Sources List */
+
+.long_button{
+  width: auto;
+  height: auto; 
+}
+
+.source_container{
+  background-color: gray;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px;
+}
 /* Video Cap */
 
 .video_view{
@@ -63,6 +83,7 @@ nav{
 .video_view:hover{
   border: 2px solid black;
 }
+
 .clip{
   margin: 30px 0px;
 }

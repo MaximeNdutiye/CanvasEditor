@@ -1,33 +1,8 @@
 const {screen, desktopCapturer} = require('electron')
 
-desktopCapturer.getSources({types: ['window', 'screen'], thumbnailSize: determinScreen()}, (error, sources) => {
-  if (error) throw error;
+desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
   getInitialScreenshots(sources)
-  for (let i = 0; i < sources.length; ++i) {
-    /*
-    if (sources[i].name === 'Entire screen') {
-      navigator.webkitGetUserMedia({
-        audio: {
-          mandatory:{
-            chromeMediaSource: 'desktop'
-          }
-        },
-        video: {
-          mandatory: {
-            chromeMediaSource: 'desktop',
-            //chromeMediaSourceId: sources[i].id,
-            minWidth: 1280,
-            maxWidth: 1280,
-            minHeight: 720,
-            maxHeight: 720
-          }
-        }
-      }, handleStream, getUserMediaError);
-      return;
-    }
-    */
-  }
-});
+})
 
 function determinScreen(){
   const {width, height} = screen.getPrimaryDisplay().workAreaSize
@@ -36,14 +11,62 @@ function determinScreen(){
       height: height
     }
 }
+
 function getInitialScreenshots(sources){
-  var sources_holder = document.querySelector('.sources_holder')
+  var sourcesHolder = document.querySelector('.sources_holder')
   sources.forEach(source => {
+
       var imageItem = document.createElement('img')
+      var sourceContainer = document.createElement('div')
+      var sourceButton =  document.createElement('button')
+
+      sourceButton.value = source.id
+      sourceButton.innerHTML = source.name
+
+      if(source.name.length > 10) {
+        sourceButton.innerHTML = source.name.substring(0,10)+"..."
+      }
+
       imageItem.classList.add('source_thumbnail')
+      sourceContainer.classList.add('source_container')
+      sourceButton.classList.add('long_button')
+
       var blob = new Blob([source.thumbnail.toPNG(50)])
       imageItem.src = URL.createObjectURL(blob)
-      sources_holder.appendChild(imageItem)
+
+      sourceContainer.appendChild(imageItem)
+      sourceContainer.appendChild(sourceButton)
+      sourcesHolder.appendChild(sourceContainer)
+
+      sourceButton.addEventListener('click', e => {
+        var sourceId = e.target.value
+
+        desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
+          if (error) throw error;
+          for (let i = 0; i < sources.length; ++i) {
+            if (sources[i].id == sourceId) {
+              navigator.webkitGetUserMedia({
+                audio: {
+                  mandatory:{
+                    chromeMediaSource: 'desktop'
+                  }
+                },
+                video: {
+                  mandatory: {
+                    chromeMediaSource: 'desktop',
+                    chromeMediaSourceId: sources[i].id,
+                    minWidth: 1280,
+                    maxWidth: 1280,
+                    minHeight: 720,
+                    maxHeight: 720
+                  }
+                }
+              }, handleStream, getUserMediaError);
+              return;
+            }
+          }
+        });
+      })
     })
 }
 

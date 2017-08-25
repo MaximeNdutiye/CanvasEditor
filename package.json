@@ -4,7 +4,8 @@
   "description": "Simple Editor using Canvas",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron . --disable-d3d11"
   },
   "keywords": [
     "canvas",
