@@ -32,6 +32,11 @@ button{
   font-size: 1em;
 }
 
+button:active{
+  background-color: gray;
+  color: white;
+}
+
 nav{
   margin: 15px 0px;
 }
@@ -48,27 +53,39 @@ nav{
   overflow: hidden;
 }
 .source_thumbnail{
-  width: 400;
-  margin: 10px;
+  width: 80%;
+  margin: 0px;
+  height: 114px;
 }
 
 .sources_holder{
   display: flex;
+  flex-wrap: wrap;
+}
+
+.preview{
+  display: none;
 }
 
 /* Sources List */
 
 .long_button{
-  width: auto;
-  height: auto; 
+  width: 80%;
+  height: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0px;
 }
 
 .source_container{
-  background-color: gray;
+  background-color: #ffffff;
   color: white;
   font-weight: bold;
   text-align: center;
-  margin: 10px;
+  margin: 5px;
+  width: 225px;
+  height: 200px;
+  padding: 0px;
 }
 /* Video Cap */
 

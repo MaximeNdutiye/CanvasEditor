@@ -21,11 +21,7 @@ function getInitialScreenshots(sources){
       var sourceButton =  document.createElement('button')
 
       sourceButton.value = source.id
-      sourceButton.innerHTML = source.name
-
-      if(source.name.length > 10) {
-        sourceButton.innerHTML = source.name.substring(0,10)+"..."
-      }
+      sourceButton.innerHTML = source.name.slice(0,15)
 
       imageItem.classList.add('source_thumbnail')
       sourceContainer.classList.add('source_container')
@@ -39,8 +35,8 @@ function getInitialScreenshots(sources){
       sourcesHolder.appendChild(sourceContainer)
 
       sourceButton.addEventListener('click', e => {
-        var sourceId = e.target.value
 
+        var sourceId = e.target.value
         desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
           if (error) throw error;
           for (let i = 0; i < sources.length; ++i) {
@@ -55,10 +51,10 @@ function getInitialScreenshots(sources){
                   mandatory: {
                     chromeMediaSource: 'desktop',
                     chromeMediaSourceId: sources[i].id,
-                    minWidth: 1280,
-                    maxWidth: 1280,
-                    minHeight: 720,
-                    maxHeight: 720
+                    minWidth: 1024,
+                    maxWidth: 3840,
+                    minHeight: 768,
+                    maxHeight: 2160
                   }
                 }
               }, handleStream, getUserMediaError);
@@ -76,6 +72,7 @@ function handleStream(stream) {
   var recordButton = document.querySelector('.record')
   var stopButton = document.querySelector('.stop')
   var videoClips = document.querySelector('.video-clips')
+  var previewer = document.querySelector('.preview')
   var chunks = []
   var deleteButtonNumber = 0;
 
@@ -85,6 +82,8 @@ function handleStream(stream) {
 
   recordButton.onclick = _ => {
     mediaRecorder.start();
+    previewer.style.display = "block"
+    previewer.src = URL.createObjectURL(stream)
     console.log(mediaRecorder.state);
     console.log("recorder started");
     recordButton.style.background = "red";
@@ -101,6 +100,7 @@ function handleStream(stream) {
 
   mediaRecorder.onstop = e => {
     console.log("stopped recording")
+    previewer.style.display = "none"
 
     var clipName = "myfile"
     var clipContainer = document.createElement('article');
@@ -121,7 +121,7 @@ function handleStream(stream) {
     clipContainer.appendChild(video);
     clipContainer.appendChild(deleteButton);
     clipContainer.appendChild(downloadClipButton);
-    videoClips.appendChild(clipContainer);
+    videoClips.prepend(clipContainer);
     downloadClipButton.appendChild(abtn);
 
     var blob = new Blob(chunks, { 'type' : 'video/mp4' });
@@ -136,8 +136,6 @@ function handleStream(stream) {
       evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
     }
   }
-
-
 }
 
 function getUserMediaError(e) {
