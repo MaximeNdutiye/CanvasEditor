@@ -1,16 +1,8 @@
 const {screen, desktopCapturer} = require('electron')
 
-desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
+desktopCapturer.getSources({types: ['window', 'screen'], minWidth: 600, minHeight: 200}, (error, sources) => {
   getInitialScreenshots(sources)
 })
-
-function determinScreen(){
-  const {width, height} = screen.getPrimaryDisplay().workAreaSize
-    return {
-      width: width,
-      height: height
-    }
-}
 
 function getInitialScreenshots(sources){
   var sourcesHolder = document.querySelector('.sources_holder')
@@ -21,7 +13,8 @@ function getInitialScreenshots(sources){
       var sourceButton =  document.createElement('button')
 
       sourceButton.value = source.id
-      sourceButton.innerHTML = source.name.slice(0,15)
+      imageItem.alt = source.id
+      //sourceButton.innerHTML = source.name.slice(0,15)
 
       imageItem.classList.add('source_thumbnail')
       sourceContainer.classList.add('source_container')
@@ -30,13 +23,14 @@ function getInitialScreenshots(sources){
       var blob = new Blob([source.thumbnail.toPNG(50)])
       imageItem.src = URL.createObjectURL(blob)
 
+      //sourceContainer.appendChild(imageItem)
+      //sourceButton.appendChild(imageItem)
       sourceContainer.appendChild(imageItem)
-      sourceContainer.appendChild(sourceButton)
       sourcesHolder.appendChild(sourceContainer)
 
-      sourceButton.addEventListener('click', e => {
+      imageItem.addEventListener('click', e => {
 
-        var sourceId = e.target.value
+        var sourceId = e.target.alt
         desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
           if (error) throw error;
           for (let i = 0; i < sources.length; ++i) {
@@ -87,7 +81,9 @@ function handleStream(stream) {
     console.log(mediaRecorder.state);
     console.log("recorder started");
     recordButton.style.background = "red";
-    recordButton.style.color = "black";
+    recordButton.style.color = "white";
+    var sources_holder = document.querySelector('.sources_selector')
+    sources_holder.classList.add('compact')
   }
 
   stopButton.onclick = _ => {
@@ -96,6 +92,8 @@ function handleStream(stream) {
     console.log("should have stopped recording")
     recordButton.style.background = "";
     recordButton.style.color = "";
+    var sources_holder = document.querySelector('.sources_selector')
+    sources_holder.classList.remove('compact')
   }
 
   mediaRecorder.onstop = e => {

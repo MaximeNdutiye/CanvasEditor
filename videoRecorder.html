@@ -4,22 +4,37 @@
     <meta charset="utf-8">
     <title>Draw</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="header.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <!--<nav>
       <a href="./index.html"><button>Main</button></a>
       <a href="./canvasEditor.html"><button>Editor</button></a>
       <a href="./videoRecorder.html"><button>Capture</button></a>
     </nav> -->
   </head>
-
   <body>
-
-    <image class="myImage"></image>
-    <div class="sources_holder"></div>
-    <button class="record">Record</button>
-    <button class="stop">Stop</button>
-    <video class="preview" autoplay></video>
-    <div class="video-clips"></div>
-
+    <header class="main-controls">
+      <div class="header-holder">
+        <div class="header">
+          <div class="option" id="close"></div>
+          <div class="option" id="maximize"></div>
+          <div class="option" id="minimize"></div>
+        </div>
+        <div class="control-btn-holder">
+          <button class="control-btn stop">STOP</button>
+          <button class="control-btn record">RECORD</button>
+        </div>
+      </div>
+      <div class="sources_selector">
+        <h3>Choose source</h3>
+        <div class="sources_holder"></div>
+      </div>
+    </header>
+    <div class="viewing-area">
+      <video class="preview" autoplay></video>
+      <div class="video-clips"></div>
+    </div>
     <script src="capture.js"></script>
+    <script src="header.js"></script>
   </body>
 </html>

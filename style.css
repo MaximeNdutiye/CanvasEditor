@@ -1,9 +1,24 @@
 
 body{
-  background-color: white;
-  height: 100%;
+  background-color: #1b2339;
+  color: #E0E0E0;
+  height: 100vh;
   width: 100%;
   margin: 0px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #2a2e37;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
 
 canvas{
@@ -25,16 +40,27 @@ button{
   background: #E0E0E0;
   color: #6F6F70;
   font-weight: bold;
-  margin: 10px 0px 10px 5px;
+  margin: 5px;
   padding: 10px;
   width: 100px;
   border: none;
+  border-radius: 2px;
   font-size: 1em;
+}
+
+button:hover{
+  background-color: gray;
+  color: #dfdeee;
 }
 
 button:active{
   background-color: gray;
   color: white;
+  outline: none;
+}
+
+button:focus{
+  outline: none;
 }
 
 nav{
@@ -53,32 +79,38 @@ nav{
   overflow: hidden;
 }
 .source_thumbnail{
-  width: 80%;
+  width: 180px;
   margin: 0px;
   height: 114px;
+  display: block;
 }
 
 .sources_holder{
   display: flex;
   flex-wrap: wrap;
+  margin-top: 40px;
 }
 
 .preview{
   display: none;
+  width: 80vw;
+  margin: 10px auto 0px 10px;
 }
 
 /* Sources List */
 
 .long_button{
-  width: 80%;
-  height: 40px;
+  width: 100%;
   overflow: hidden;
   white-space: nowrap;
   margin: 0px;
+  padding: 0px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .source_container{
-  background-color: #ffffff;
   color: white;
   font-weight: bold;
   text-align: center;
@@ -91,9 +123,8 @@ nav{
 
 .video_view{
   width: 50%;
-  margin-bottom: 30px;
+  margin: 0px auto 30px auto;
   display: block;
-  margin-left: 20px;
   border: 2px solid white;
 }
 
@@ -102,5 +133,26 @@ nav{
 }
 
 .clip{
-  margin: 30px 0px;
+  margin: 0px;
+  text-align: center;
+}
+
+.preview{
+  margin: 30px auto;
+}
+
+/* main area */
+
+.main-controls{
+  border-bottom: 2px solid #333948;
+}
+
+.video-clips{
+  padding-top: 50px;
+}
+
+.header-holder{
+  background-color: #252d47;
+  padding: 10px;
+  -webkit-app-region: drag;
 }

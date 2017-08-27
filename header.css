@@ -1,0 +1,65 @@
+.header {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  justify-content: flex-start;
+  align-self: stretch;
+  -webkit-app-region: drag;
+  margin-bottom: 5px;
+}
+
+.option {
+  width: 3px;
+  height: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 7px;
+  font-size: .7rem;
+  background-color: gray;
+  border-radius: 100%;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  margin-left: 5px;
+}
+
+#close:hover{
+  background-color: #E9161B;
+}
+
+#minimize:hover{
+  background-color: #FFD51A;
+}
+
+#maximize:hover{
+  background-color: #5ADB27;
+}
+
+.compact {
+  height: 50px;
+  overflow: hidden;
+}
+
+.control-btn{
+  background-color: transparent;
+  color: #E0E0E0;
+  letter-spacing: 1px;
+  margin: 2px;
+  -webkit-app-region: no-drag;
+}
+
+.control-btn:hover{
+  background-color: #151930;
+
+}
+
+.control-btn:active{
+  background-color: #1d243e;
+}
+
+.control-btn-holder{
+  display: flex;
+  flex-direction: row-reverse;
+}
