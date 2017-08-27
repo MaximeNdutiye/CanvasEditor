@@ -1,10 +1,9 @@
-# Canvas Editor
+# Canvas
 
 ## About
 
-Simple Electron app for drawing using HTML Canvas,
-and for basic video capture.
-
+Simple Electron app for desktop capture.
+this app used Electron's ` desktopCapturer ` API
 
 ### To Run
 
