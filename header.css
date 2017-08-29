@@ -37,10 +37,6 @@
   background-color: #5ADB27;
 }
 
-.compact {
-  height: 50px;
-  overflow: hidden;
-}
 
 .control-btn{
   background-color: transparent;
@@ -62,4 +58,15 @@
 .control-btn-holder{
   display: flex;
   flex-direction: row-reverse;
+}
+
+.sources_selector{
+  padding: 0px 20px;
+  height: 300px;
+  transition: height 1s;
+  overflow: hidden;
+}
+
+.compactify{
+  height: 50px;
 }

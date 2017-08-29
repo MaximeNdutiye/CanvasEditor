@@ -8,28 +8,15 @@ function getInitialScreenshots(sources){
   var sourcesHolder = document.querySelector('.sources_holder')
   sources.forEach(source => {
 
-      var imageItem = document.createElement('img')
-      var sourceContainer = document.createElement('div')
-      var sourceButton =  document.createElement('button')
-
-      sourceButton.value = source.id
-      imageItem.alt = source.id
-      //sourceButton.innerHTML = source.name.slice(0,15)
-
-      imageItem.classList.add('source_thumbnail')
-      sourceContainer.classList.add('source_container')
-      sourceButton.classList.add('long_button')
-
       var blob = new Blob([source.thumbnail.toPNG(50)])
-      imageItem.src = URL.createObjectURL(blob)
+      var str = '<div class=\"source_container\"><img class=\"source_thumbnail\"'
+                +'alt=\"'+source.id+'\"src=\"'+URL.createObjectURL(blob)+'\"></img></div>'
 
-      //sourceContainer.appendChild(imageItem)
-      //sourceButton.appendChild(imageItem)
-      sourceContainer.appendChild(imageItem)
-      sourcesHolder.appendChild(sourceContainer)
+      var sourceItem = domify(str)
 
-      imageItem.addEventListener('click', e => {
+      sourcesHolder.appendChild(sourceItem)
 
+      sourceItem.childNodes[0].addEventListener('click', e => {
         var sourceId = e.target.alt
         desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
           if (error) throw error;
@@ -68,7 +55,6 @@ function handleStream(stream) {
   var videoClips = document.querySelector('.video-clips')
   var previewer = document.querySelector('.preview')
   var chunks = []
-  var deleteButtonNumber = 0;
 
   mediaRecorder.ondataavailable = e => {
     chunks.push(e.data);
@@ -78,58 +64,34 @@ function handleStream(stream) {
     mediaRecorder.start();
     previewer.style.display = "block"
     previewer.src = URL.createObjectURL(stream)
-    console.log(mediaRecorder.state);
-    console.log("recorder started");
     recordButton.style.background = "red";
     recordButton.style.color = "white";
-    var sources_holder = document.querySelector('.sources_selector')
-    sources_holder.classList.add('compact')
+    document.querySelector('.sources_selector').style.height = "60px"
   }
 
   stopButton.onclick = _ => {
     mediaRecorder.stop()
-    console.log(mediaRecorder.state)
-    console.log("should have stopped recording")
     recordButton.style.background = "";
     recordButton.style.color = "";
-    var sources_holder = document.querySelector('.sources_selector')
-    sources_holder.classList.remove('compact')
+    document.querySelector('.sources_selector').style.height = "300px"
   }
 
   mediaRecorder.onstop = e => {
-    console.log("stopped recording")
+
     previewer.style.display = "none"
-
-    var clipName = "myfile"
-    var clipContainer = document.createElement('article');
-    var clipLabel = document.createElement('p');
-    var video = document.createElement('video');
-    var deleteButton = document.createElement('button')
-
-    var abtn = document.createElement('button')
-    var downloadClipButton = document.createElement("a")
-
-    clipContainer.classList.add('clip');
-    video.setAttribute('controls', '');
-    deleteButton.innerHTML = "Delete";
-    abtn.innerHTML = "Download";
-    video.classList.add('video_view');
-    clipLabel.innerHTML = clipName;
-
-    clipContainer.appendChild(video);
-    clipContainer.appendChild(deleteButton);
-    clipContainer.appendChild(downloadClipButton);
-    videoClips.prepend(clipContainer);
-    downloadClipButton.appendChild(abtn);
 
     var blob = new Blob(chunks, { 'type' : 'video/mp4' });
     chunks = [];
-    var videoURL = window.URL.createObjectURL(blob);
-    video.src = videoURL;
-    downloadClipButton.href = videoURL;
-    downloadClipButton.download = clipName;
 
-    deleteButton.onclick = e => {
+    var str = '<article class=\"clip\"><video controls class=\"video_view\"'+
+              'src=\"'+URL.createObjectURL(blob)+'\"></video><button>Delete</button>'+
+              '<a href=\"'+URL.createObjectURL(blob)+'\"download=\"myfile.mp4\">'+
+              '<button>Download</button></a></article>'
+    var videoSource = domify(str)
+
+    videoClips.appendChild(videoSource)
+
+    videoSource.childNodes[1].onclick = e => {
       var evtTgt = e.target;
       evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
     }
