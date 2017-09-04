@@ -1,0 +1,38 @@
+{
+  portraits : {
+    0:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait0-min.jpg"
+    },
+    1:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait1-min.jpg"
+    },
+    2:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait2-min.jpg"
+    },
+    3:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait3-min.jpg"
+    },
+    4:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait4-min.jpg"
+    },
+    5:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait5-min.jpg"
+    },
+    6:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait6-min.jpg"
+    },
+    7:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait7-min.jpg"
+    },
+    8:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait8-min.jpg"
+    },
+    9:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait9-min.jpg"
+    },
+    10:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait10-min.jpg"
+    },
+    11:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait11-min.jpg"
+    },
+    12:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait12-min.jpg"
+    },
+    13:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait13-min.jpg"
+    },
+    14:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait14-min.jpg"
+    },
+    15:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait15-min.jpg"
+    },
+    16:{ src: "gs://axiomatic-d7de0.appspot.com/portraits/portrait16-min.jpg"
+    }
+  }
+}

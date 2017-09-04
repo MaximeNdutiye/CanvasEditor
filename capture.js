@@ -66,7 +66,7 @@ function handleStream(stream) {
     previewer.src = URL.createObjectURL(stream)
     recordButton.style.background = "red";
     recordButton.style.color = "white";
-    document.querySelector('.sources_selector').style.height = "60px"
+    document.querySelector('.sources_selector').style.height = "0px"
   }
 
   stopButton.onclick = _ => {

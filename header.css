@@ -58,10 +58,11 @@
 .control-btn-holder{
   display: flex;
   flex-direction: row-reverse;
+  padding-right: 20px;
 }
 
 .sources_selector{
-  padding: 0px 20px;
+  padding: 50px 20px 0px 20px;
   height: 300px;
   transition: height 1s;
   overflow: hidden;
