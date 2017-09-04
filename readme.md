@@ -1,6 +1,6 @@
 # Canvas
 
-![Canvas Screenshot](/images/screenshot.png?raw=true "Optional Title")
+![Canvas Screenshot](images/screenshot.png?raw=true "Canvas")
 
 ## About
 
