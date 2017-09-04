@@ -1,5 +1,7 @@
 # Canvas
 
+![Canvas Screenshot](/images/screenshot.png)
+
 ## About
 
 Simple Electron app for desktop capture.
@@ -25,7 +27,6 @@ These commands fix some of the black screen issues
   npm start
   electron . --disable-d3d11
 ```
-
 
 ## TODO
 

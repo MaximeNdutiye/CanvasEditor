@@ -1,6 +1,7 @@
 const {screen, desktopCapturer} = require('electron')
 
-desktopCapturer.getSources({types: ['window', 'screen'], minWidth: 600, minHeight: 200}, (error, sources) => {
+desktopCapturer.getSources({types: ['window', 'screen'],
+                minWidth: 600, minHeight: 200}, (error, sources) => {
   getInitialScreenshots(sources)
 })
 
