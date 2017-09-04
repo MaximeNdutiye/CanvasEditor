@@ -1,6 +1,6 @@
 # Canvas
 
-![Canvas Screenshot](images/screenshot.png?raw=true "Canvas")
+![Canvas Screenshot](https://raw.githubusercontent.com/MaximeNdutiye/CanvasEditor/master/images/screenshot.PNG)
 
 ## About
 
